@@ -121,14 +121,6 @@
 	Controller.prototype.editItemSave = function (id, title) {
 		var self = this;
 
-		// while (title[0] === " ") { // /!\ 
-		// 	title = title.slice(1);
-		// }
-
-		// while (title[title.length-1] === " ") {
-		// 	title = title.slice(0, -1);
-		// }
-
 		title = title.trim(); // remove both blank in the begining and in the end
 
 		if (title.length !== 0) {
@@ -164,14 +156,10 @@
 			items = data;
 		});
 
-		// items.forEach(function(item) {  // /!\ log 
-		// 	if (item.id === id) {
-		// 		console.log("Element with ID: " + id + " has been removed.");
-		// 	}
-		// });
 
 		self.model.remove(id, function () {
 			self.view.render('removeItem', id);
+			console.log("Element with ID: " + id + " has been removed."); // L.169 
 		});
 
 		self._filter();
