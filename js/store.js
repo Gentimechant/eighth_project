@@ -80,14 +80,6 @@
 
 		callback = callback || function () {};
 
-		// Generate an ID
-	    var newId = ""; 
-	    var charset = "0123456789";
-
-        for (var i = 0; i < 6; i++) {
-     		newId += charset.charAt(Math.floor(Math.random() * charset.length)); // Such a bullshit!!!
-		}
-
 		// If an ID was actually given, find the item and update each property
 		if (id) {
 			for (var i = 0; i < todos.length; i++) {
@@ -103,8 +95,9 @@
 			callback.call(this, todos);
 		} else {
 
-    		// Assign an ID
-			updateData.id = parseInt(newId);
+			// Assign an ID
+			// @see  https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Date/now
+			updateData.id = Date.now(); 
     
 
 			todos.push(updateData);
