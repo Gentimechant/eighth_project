@@ -124,17 +124,18 @@
 		var todos = data.todos;
 		var todoId;
 		
-		for (var i = 0; i < todos.length; i++) {
+		for (var i = 0; i < todos.length; i++) {  // Loop should be optimized /!\
 			if (todos[i].id == id) {
 				todoId = todos[i].id;
-			}
-		}
-
-		for (var i = 0; i < todos.length; i++) {
-			if (todos[i].id == todoId) {
 				todos.splice(i, 1);
 			}
 		}
+
+		// for (var i = 0; i < todos.length; i++) { 
+		// 	if (todos[i].id == todoId) {
+		// 		todos.splice(i, 1); 				// moved 
+		// 	}
+		// }
 
 		localStorage[this._dbName] = JSON.stringify(data);
 		callback.call(this, todos);

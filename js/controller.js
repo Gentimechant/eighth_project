@@ -92,7 +92,7 @@
 	 * An event to fire whenever you want to add an item. Simply pass in the event
 	 * object and it'll handle the DOM insertion and saving of the new item.
 	 */
-	Controller.prototype.adddItem = function (title) {
+	Controller.prototype.addItem = function (title) { // 1st bug adddItem (3x d)
 		var self = this;
 
 		if (title.trim() === '') {
@@ -121,13 +121,15 @@
 	Controller.prototype.editItemSave = function (id, title) {
 		var self = this;
 
-		while (title[0] === " ") {
-			title = title.slice(1);
-		}
+		// while (title[0] === " ") { // /!\ 
+		// 	title = title.slice(1);
+		// }
 
-		while (title[title.length-1] === " ") {
-			title = title.slice(0, -1);
-		}
+		// while (title[title.length-1] === " ") {
+		// 	title = title.slice(0, -1);
+		// }
+
+		title = title.trim(); // remove both blank in the begining and in the end
 
 		if (title.length !== 0) {
 			self.model.update(id, {title: title}, function () {
@@ -162,11 +164,11 @@
 			items = data;
 		});
 
-		items.forEach(function(item) {
-			if (item.id === id) {
-				console.log("Element with ID: " + id + " has been removed.");
-			}
-		});
+		// items.forEach(function(item) {  // /!\ log 
+		// 	if (item.id === id) {
+		// 		console.log("Element with ID: " + id + " has been removed.");
+		// 	}
+		// });
 
 		self.model.remove(id, function () {
 			self.view.render('removeItem', id);
