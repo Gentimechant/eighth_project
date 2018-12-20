@@ -163,13 +163,23 @@ describe('controller', function () {
 	});
 
 	it('should highlight "Active" filter when switching to active view', function () {
-		// TODO: write test : highlight "Active" filter ==> should add completed highlight /!\
+		// TODO: write test :  
 		var todo = {id: 42, title: 'my todo', completed: true};
 		setUpModel([todo]);
 
-		subject.setView('#/active'); // subject.setView('#/completed') 
+		subject.setView('#/active'); 
 
-		expect(view.render).toHaveBeenCalledWith('setFilter', 'active'); // .toHaveBeenCalledWith('setFilter', 'completed')
+		expect(view.render).toHaveBeenCalledWith('setFilter', 'active'); 
+	});
+
+	it('should highlight "completed" filter when switching to active view', function () {
+		//  Added test completed
+		var todo = {id: 42, title: 'my todo', completed: true};
+		setUpModel([todo]);
+
+		subject.setView('#/completed'); 
+
+		expect(view.render).toHaveBeenCalledWith('setFilter', 'completed'); 
 	});
 
 	describe('toggle all', function () {
